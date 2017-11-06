@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteAndroid", "SQLiteAndroid\SQLiteAndroid.csproj", "{8489E292-7BF3-4A62-B789-9C6D57D227EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8489E292-7BF3-4A62-B789-9C6D57D227EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8489E292-7BF3-4A62-B789-9C6D57D227EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8489E292-7BF3-4A62-B789-9C6D57D227EB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8489E292-7BF3-4A62-B789-9C6D57D227EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8489E292-7BF3-4A62-B789-9C6D57D227EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8489E292-7BF3-4A62-B789-9C6D57D227EB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7AFA31F0-5AE9-48D1-8F91-31D7D43C1ECB}
+	EndGlobalSection
+EndGlobal
