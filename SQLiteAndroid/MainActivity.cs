@@ -50,7 +50,18 @@ namespace SQLiteAndroid
 
             var listView = FindViewById<ListView>(Resource.Id.myListView);
 
-            listView.Adapter = new ProfileAdapter(this,profiles);
+            var profileAdapter = new ProfileAdapter(this,profiles);
+            listView.Adapter = profileAdapter;
+
+            profileAdapter.btnDelete.Click += BtnDelete_Click;
+        }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            ProfileService profileService = new ProfileService();
+            var tag = (sender as Button).Tag;
+
+            profileService.Delete(tag.ToString());
         }
     }
 }

@@ -17,6 +17,7 @@ namespace SQLiteAndroid
     {
         private Activity context;
         private List<Profile> profiles;
+        public Button btnDelete;
         public ProfileAdapter(Activity activity,List<Profile> profiles)
         {
             context = activity;
@@ -53,10 +54,10 @@ namespace SQLiteAndroid
 
         private void ProfileAdapter_Click(object sender, EventArgs e)
         {
-            var btn = sender as Button;
+             btnDelete = sender as Button;
 
-            ProfileService profileService = new ProfileService();
-            profileService.Delete(btn.Tag.ToString());
+         
+            
         }
     }
 }
