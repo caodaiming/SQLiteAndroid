@@ -13,19 +13,22 @@ using SQLiteAndroid.Models;
 
 namespace SQLiteAndroid
 {
-    public class ProfileAdapter : BaseAdapter<Profile>
+    public class ProfileAdapter<T> : BaseAdapter<T>
     {
         private Activity context;
-        private List<Profile> profiles;
-        public Button btnDelete;
-        public ProfileAdapter(Activity activity,List<Profile> profiles)
+        private List<T> dataSource;
+        private int LayoutSource;
+        private Action<View, T> action;
+        public ProfileAdapter(Activity activity, List<T> dataSource, int layoutSource, Action<View, T> action)
         {
             context = activity;
-            this.profiles = profiles;
+            this.LayoutSource = layoutSource;
+            this.action = action;
+            this.dataSource = dataSource;
         }
-        public override Profile this[int position] => profiles[position];
+        public override T this[int position] => dataSource[position];
 
-        public override int Count => profiles.Count;
+        public override int Count => dataSource.Count;
 
         public override long GetItemId(int position)
         {
@@ -34,30 +37,34 @@ namespace SQLiteAndroid
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            var profile = profiles[position];
+            var t = dataSource[position];
 
-            if (null == convertView)
+            View v = convertView;
+
+            if (null == v)
             {
-                convertView = context.LayoutInflater.Inflate(Resource.Layout.ListItem,null);
+                v = context.LayoutInflater.Inflate(LayoutSource, null);
             }
 
-            convertView.FindViewById<TextView>(Resource.Id.txtAddress).Text = profile.Address;
-            convertView.FindViewById<TextView>(Resource.Id.txtAge).Text = profile.Age.ToString();
-            convertView.FindViewById<TextView>(Resource.Id.txtName).Text = profile.UserName.ToString();
+            //convertView.FindViewById<TextView>(Resource.Id.txtAddress).Text = profile.Address;
+            //convertView.FindViewById<TextView>(Resource.Id.txtAge).Text = profile.Age.ToString();
+            //convertView.FindViewById<TextView>(Resource.Id.txtName).Text = profile.UserName.ToString();
 
-            var btnDelete = convertView.FindViewById<Button>(Resource.Id.btnDelete);
-            btnDelete.Tag = profile.UserName;
-            btnDelete.Click += ProfileAdapter_Click;
+            //btnDelete = convertView.FindViewById<Button>(Resource.Id.btnDelete);
+            //btnDelete.Tag = profile.UserName;
+            //btnDelete.Click += ProfileAdapter_Click;
 
-            return convertView;
+            if (action != null)
+            {
+                action.Invoke(v, t);
+            }
+
+            return v;
         }
 
         private void ProfileAdapter_Click(object sender, EventArgs e)
         {
-             btnDelete = sender as Button;
-
-         
-            
+            var btnDelete = sender as Button;
         }
     }
 }

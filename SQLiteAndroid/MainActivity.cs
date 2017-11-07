@@ -18,7 +18,7 @@ namespace SQLiteAndroid
 
             FindViewById<Button>(Resource.Id.btnSave).Click += MainActivity_Click;
             FindViewById<Button>(Resource.Id.btnRead).Click += MainActivity_Click1;
-            LoadDataToListView();
+           // LoadDataToListView();
         }
 
         private void MainActivity_Click1(object sender, EventArgs e)
@@ -50,11 +50,22 @@ namespace SQLiteAndroid
 
             var listView = FindViewById<ListView>(Resource.Id.myListView);
 
-            var profileAdapter = new ProfileAdapter(this,profiles);
-            listView.Adapter = profileAdapter;
+            var profileAdapter = new ProfileAdapter<Profile>(this, profiles, Resource.Layout.ListItem, (v, t) =>
+            {
+                v.FindViewById<TextView>(Resource.Id.txtAddress).Text = t.Address;
+                v.FindViewById<TextView>(Resource.Id.txtAge).Text = t.Age.ToString();
+                v.FindViewById<TextView>(Resource.Id.txtName).Text = t.UserName.ToString();
 
-            profileAdapter.btnDelete.Click += BtnDelete_Click;
+               var btnDelete = v.FindViewById<Button>(Resource.Id.btnDelete);
+                btnDelete.Tag = t.ID;
+                btnDelete.Click += BtnDelete_Click;
+            });
+
+            listView.Adapter = profileAdapter;
+            
         }
+
+       
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {

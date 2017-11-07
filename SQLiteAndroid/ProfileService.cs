@@ -18,9 +18,9 @@ namespace SQLiteAndroid
         }
 
 
-        public void Delete(string userName)
+        public void Delete(int id)
         {
-            sqliteHelper.Delete(t => t.UserName == userName);
+            sqliteHelper.Delete(id);
         }
         public List<Profile> GetAll()
         {

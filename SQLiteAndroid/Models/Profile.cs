@@ -16,6 +16,7 @@ namespace SQLiteAndroid.Models
     public class Profile
     {
         [PrimaryKey]
+        [AutoIncrement]
         public int ID { get; set; }
         public string UserName { get; set; }
 
